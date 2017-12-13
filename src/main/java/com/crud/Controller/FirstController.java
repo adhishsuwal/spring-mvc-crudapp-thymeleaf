@@ -26,7 +26,7 @@ public class FirstController {
         firstModel.setPhno(userPojo.getPhno());
         userService.addUser(firstModel);
 
-        return "home";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/findOne")
