@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!--<link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet"/>-->
+    <link rel="stylesheet" th:href="@{resources/css/bootstrap.min.css}"/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />-->
+</head>
+<body>
+<h1>Spring Mvc With Thymeleaf</h1>
+
+<div class="container">
+    <div class="table-responsive">
+        <a th:href="@{/addUser}" class="btn btn-info pull-right" role="button">Add</a>
+        <table class="table table-responsive table-hover table-bordered table-stripped table-inverse">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone No.</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                    <tr data-th-each = "user : ${userList}">
+                    <td th:text = "${user.id}"></td>
+                    <td th:text = "${user.name}"></td>
+                    <td th:text = "${user.address}"></td>
+                    <td th:text = "${user.email}"></td>
+                    <td th:text = "${user.phno}"></td>
+                    <!--<td><button th:href="@{/delete?id=}+${user.id}" class="btn btn-danger">Delete</button></td>-->
+                <td>
+                    <!--<input onclick="href='@{/delete?id=}+${user.id}'"  class="btn btn-danger" type="submit">Delete</input>-->
+                    <a th:href="@{/delete/}+${user.id}" class="btn btn-danger" role="button">Delete</a>
+                </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
