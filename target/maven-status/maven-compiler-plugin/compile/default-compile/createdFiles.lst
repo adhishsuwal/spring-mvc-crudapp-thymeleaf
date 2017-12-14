@@ -1,0 +1,7 @@
+com\crud\Service\UserService.class
+com\crud\Pojos\UserPojo.class
+com\crud\Configs\JavaConfig.class
+com\crud\Service\Impls\UserServiceImpl.class
+com\crud\Model\FirstModel.class
+com\crud\Repository\UserRepository.class
+com\crud\Controller\FirstController.class

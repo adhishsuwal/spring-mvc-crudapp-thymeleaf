@@ -1,7 +1,6 @@
 package com.crud.Controller;
 
 import com.crud.Model.FirstModel;
-import com.crud.Pojos.UserPojo;
 import com.crud.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,16 +16,22 @@ public class FirstController {
     private UserService userService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    @ResponseBody
-    public String addUser(@RequestBody UserPojo userPojo) {
-        FirstModel firstModel = new FirstModel();
-        firstModel.setName(userPojo.getName());
-        firstModel.setAddress(userPojo.getAddress());
-        firstModel.setEmail(userPojo.getEmail());
-        firstModel.setPhno(userPojo.getPhno());
+    public String addUser(@ModelAttribute("FirstModel") FirstModel firstModel, Model model) {
+        /*FirstModel firstModel = new FirstModel();
+        firstModel.setName(model.getName());
+        firstModel.setAddress(model.getAddress());
+        firstModel.setEmail(model.getEmail());
+        firstModel.setPhno(model.getPhno());*/
         userService.addUser(firstModel);
+        model.addAttribute("form", firstModel);
 
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/addUserform")
+    public String Userform(Model model)
+    {
+        return "addUserform";
     }
 
     @RequestMapping(value = "/findOne")
