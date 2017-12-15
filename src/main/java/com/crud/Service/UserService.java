@@ -10,4 +10,5 @@ public interface UserService {
     List<FirstModel> findAll();
     FirstModel addUser(FirstModel firstModel);
     void removeOne(Long id);
+    FirstModel updateUser(FirstModel firstModel);
 }

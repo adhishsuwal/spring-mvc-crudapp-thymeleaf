@@ -36,6 +36,7 @@
                 <td>
                     <!--<input onclick="href='@{/delete?id=}+${user.id}'"  class="btn btn-danger" type="submit">Delete</input>-->
                     <a th:href="@{/delete/}+${user.id}" class="btn btn-danger" role="button">Delete</a>
+                    <a th:href="@{/updateUser?id=}+${user.id}" class="btn btn-warning" role="button">Edit</a>
                 </td>
                 </tr>
             </tbody>

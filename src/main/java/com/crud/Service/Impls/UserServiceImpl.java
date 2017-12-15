@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService{
     public void removeOne(Long id) {
         userRepository.delete(id);
     }
+
+    @Override
+    public FirstModel updateUser(FirstModel firstModel) {
+        return userRepository.save(firstModel);
+    }
 }

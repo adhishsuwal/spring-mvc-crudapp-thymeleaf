@@ -3,10 +3,13 @@ package com.crud.Controller;
 import com.crud.Model.FirstModel;
 import com.crud.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -29,7 +32,7 @@ public class FirstController {
     }
 
     @RequestMapping(value = "/addUserform")
-    public String Userform(Model model)
+    public String userForm(Model model)
     {
         return "addUserform";
     }
@@ -48,11 +51,30 @@ public class FirstController {
         return "home";
     }
 
+    /*To delete user*/
     @RequestMapping(value = "/delete/{id}")
     public String removeOne(@PathVariable("id") Long id ,Model model) {
         userService.removeOne(id);
         List<FirstModel> firstModelList=userService.findAll();
         model.addAttribute("userList",firstModelList);
         return "redirect:/";
+    }
+
+//    To edit users
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    public String updateUser(@ModelAttribute("firstModel") FirstModel firstModel
+            ,HttpServletRequest httpServletRequest) {
+
+        userService.addUser(firstModel);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/updateUser")
+    public String userFormUpdate(@RequestParam("id") Long id, Model model)
+    {
+        FirstModel firstModel=userService.findOne(id);
+        model.addAttribute("form", firstModel);
+        return "updateUserform";
     }
 }
