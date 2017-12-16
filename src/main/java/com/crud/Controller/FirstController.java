@@ -56,18 +56,9 @@ public class FirstController {
         return "redirect:/";
     }
 
-
-    @RequestMapping(value = "/updateUser")
-    public String userFormUpdate(@RequestParam("id") Long id, Model model) {
-        FirstModel firstModel = userService.findOne(id);
-        model.addAttribute("form", firstModel);
-        return "updateUserform";
-    }
-
     //    To edit users
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("firstModel") FirstModel firstModel,
-                             @RequestParam("id") Long id) {
+    public String updateUser(@ModelAttribute("firstModel") FirstModel firstModel, @RequestParam("id") Long id) {
         FirstModel updateModel = userService.findOne(id);
         updateModel.setName(firstModel.getName());
         updateModel.setAddress(firstModel.getAddress());
@@ -78,5 +69,10 @@ public class FirstController {
         return "redirect:/";
     }
 
-
+    @RequestMapping(value = "/updateUser")
+    public String userFormUpdate(@RequestParam("id") Long id, Model model) {
+        FirstModel firstModel = userService.findOne(id);
+        model.addAttribute("form", firstModel);
+        return "updateUserform";
+    }
 }
