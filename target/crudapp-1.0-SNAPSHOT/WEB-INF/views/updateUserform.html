@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 align="center">User Form</h1>
-<form th:action="@{/updateUser}" method="post">
+<form th:action="@{/updateUser?id=}+${form.id}" method="post">
     <div class="form-group">
         <label for="name">Your name</label>
         <input type="text" th:value="${form.name}" name="name" id="name" required="required" class="form-control" placeholder="Enter Name"/>
